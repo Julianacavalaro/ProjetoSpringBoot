@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostagemRepository extends JpaRepository<Postagem,Long> {
 	//metodo FindAllByTituloContaingIgnoreCase
-	public List<Postagem> findAllByTituloContainingIgnoreCase (String titulo);
+	public List<Postagem> findAllByTituloContainingIgnoreCase (String titulo);//Método híbrido do jpa + meu método começa com letra minúscula
 }
