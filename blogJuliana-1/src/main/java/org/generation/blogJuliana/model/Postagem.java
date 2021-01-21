@@ -6,11 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 //Essa classe é uma entidade do jpa hibernate
@@ -25,8 +28,13 @@ public class Postagem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	//Nenhum título pode ficar vazio
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Tema tema;
 	
+
+	//Nenhum título pode ficar vazio
+
 	@NotNull
 	@Size(min = 1, max = 100)
 	private String titulo;
@@ -68,6 +76,13 @@ public class Postagem {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
 	}
 
 	
